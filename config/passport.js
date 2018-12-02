@@ -2,21 +2,21 @@ var passport = require('passport'),
 localStrategy = require('passport-local').Strategy,
 db = require('../models');
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
     done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
-    db.User.find({where: {id: user.id}}).success(function(user) {
+passport.deserializeUser((user, done) => {
+    db.User.findOne({where: {id: user.id}}).then(user => {
         done(null, user);
-    }).error(function(err) {
+    }).catch(err => {
         done(err, null);
     });
 });
 
 passport.use(new localStrategy(
    function(username, password, done) {
-       db.User.find({where: {username: username}}).success(function(user) {
+       db.User.findOne({where: {username: username}}).then(user => {
            passwd = user ? user.password: '';
            isMatch = db.User.validPassword(password, passwd, done, user);
        });
