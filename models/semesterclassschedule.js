@@ -3,30 +3,26 @@ module.exports = (sequelize, DataTypes) => {
   const SemesterClassSchedule = sequelize.define('SemesterClassSchedule', {
     startDate: {
       type: DataTypes.DATE,
+      allowNull: false,
       validate: {
-        isDate: true,
-        notNull: true,
-        notEmpty: true
+        notEmpty: true,
+        isDate: true
       }
     },
     endDate: {
       type: DataTypes.DATE,
+      allowNull: false,
       validate: {
-        isDate: true,
-        notNull: true,
         notEmpty: true,
-        isAfter: this.getDataValue('startDate')
+        isDate: true,
+        // isAfter: this.getDataValue('startDate')
       }
     },
     location: {
       type: DataTypes.STRING
     },
     name: {
-      type: DataTypes.STRING,
-      validate: {
-        notNull: true,
-        notEmpty: true
-      }
+      type: DataTypes.STRING
     },
     notes: {
       type: DataTypes.TEXT
@@ -38,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: false,
     tableName: 'semester_class_schedules'
   });
-  SemesterClassSchedule.associate = function (models) {
+  SemesterClassSchedule.associate = (models) => {
     SemesterClassSchedule.belongsTo(models.SemesterClass, {
       foreignKey: 'semesterClassId',
       sourceKey: 'id'

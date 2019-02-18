@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     code: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        isNotNull: true,
         notEmpty: true
       }
     },
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: false,
     tableName: 'faculties'
   });
-  Faculty.associate = function (models) {
+  Faculty.associate = (models) => {
     Faculty.hasMany(models.Faculty, {
       foreignKey: 'facultyId',
       sourceKey: 'id'

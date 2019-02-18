@@ -1,6 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Bill = sequelize.define('PaidBill', {
+    name: {
+      type: DataTypes.STRING
+    },
     date: {
       type: DataTypes.DATE,
       validate: {
@@ -17,11 +20,13 @@ module.exports = (sequelize, DataTypes) => {
         isNumeric: true
       }
     },
-    taxesIncluded: {
-      type: DataTypes.BOOLEAN,
+    taxPercent: {
+      type: DataTypes.DECIMAL(5, 3),
+      allowNull: false,
       validate: {
-        notNull: true,
-        notEmpty: true
+        notEmpty: true,
+        min: 0,
+        max: 40
       }
     }
   }, {
@@ -31,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: false,
     tableName: 'paid_bills'
   });
-  Bill.associate = function (models) {
+  Bill.associate = (models) => {
     Bill.belongsTo(models.User, {
       foreignKey: 'paidByUserId',
       sourceKey: 'id'

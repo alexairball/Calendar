@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     code: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notEmpty: true,
-        notNull: true
+        notEmpty: true
       }
     },
     description: {
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: false,
     tableName: 'classes'
   });
-  Class.associate = function (models) {
+  Class.associate = (models) => {
     Class.belongsTo(models.Faculty, {
       foreignKey: 'facultyId',
       sourceKey: 'id'

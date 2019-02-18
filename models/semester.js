@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     code: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: true,
         notEmpty: true
       }
     },
@@ -16,19 +16,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     startDate: {
       type: DataTypes.DATE,
+      allowNull: false,
       validate: {
-        isDate: true,
-        notNull: true,
-        notEmpty: true
+        notEmpty: true,
+        isDate: true
       }
     },
     endDate: {
       type: DataTypes.DATE,
+      allowNull: false,
       validate: {
-        isDate: true,
-        notNull: true,
         notEmpty: true,
-        isAfter: this.getDataValue('startDate')
+        isDate: true,
+        // isAfter: this.getDataValue('startDate')
       }
     }
   }, {
@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: false,
     tableName: 'semesters'
   });
-  Semester.associate = function (models) {
+  Semester.associate = (models) => {
     Semester.belongsTo(models.User, {
       foreignKey: 'userId',
       sourceKey: 'id'

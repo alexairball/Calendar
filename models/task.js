@@ -3,8 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Task = sequelize.define('Task', {
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: true,
         notEmpty: true
       }
     },
@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     startDate: {
       type: DataTypes.DATE,
+      allowNull: false,
       validate: {
-        notNull: true,
         notEmpty: true,
         isDate: true
       }
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       validate: {
         isDate: true,
-        isAfter: this.getDataValue('startDate')
+        // isAfter: this.getDataValue('startDate')
       }
     }
   }, {
@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: false,
     tableName: 'tasks'
   });
-  Task.associate = function (models) {
+  Task.associate = (models) => {
     Task.belongsToMany(models.User, {
       as: 'Users',
       through: models.TaskDates,

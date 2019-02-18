@@ -5,10 +5,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     startDate: {
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      validate: {
+        isDate: true
+      }
     },
     endDate: {
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      validate: {
+        isDate: true,
+        // isAfter: this.getDataValue('startDate')
+      }
     }
   }, {
     timestamps: true,
@@ -17,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: false,
     tableName: 'semester_classes'
   });
-  SemesterClass.associate = function (models) {
+  SemesterClass.associate = (models) => {
     SemesterClass.belongsTo(models.Semester, {
       foreignKey: 'semesterId',
       sourceKey: 'id'

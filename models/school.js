@@ -3,8 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const School = sequelize.define('School', {
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: true,
         notEmpty: true
       }
     }
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: false,
     tableName: 'schools'
   });
-  School.associate = function (models) {
+  School.associate = (models) => {
     School.hasMany(models.Faculty, {
       foreignKey: 'schoolId',
       sourceKey: 'id'

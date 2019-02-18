@@ -3,8 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const SettingSection = sequelize.define('SettingSection', {
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: true,
         notEmpty: true
       }
     },
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: false,
     tableName: 'setting_sections'
   });
-  SettingSection.associate = function (models) {
+  SettingSection.associate = (models) => {
     SettingSection.hasMany(models.Setting, {
       foreignKey: 'sectionId',
       sourceKey: 'id'

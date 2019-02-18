@@ -6,14 +6,15 @@ module.exports = (sequelize, DataTypes) => {
     acceptedAt: {
       type: DataTypes.DATE,
       validate: {
+        notEmpty: true,
         isDate: true
       }
     },
-    creator: {
+    isCreator: {
       type: DataTypes.BOOLEAN,
       validate: {
-        notNull: true,
-        notEmpty: true
+        notEmpty: true,
+        isIn: [['true', 'false', '0', '1']]
       }
     }
   }, {
@@ -23,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: false,
     tableName: 'user_addresses'
   });
-  UserAddresses.associate = function (models) {
+  UserAddresses.associate = (models) => {
     // associations can be defined here
   };
   return UserAddresses;
