@@ -59,3 +59,12 @@
 </body>
 
 </html>
+<script>
+$('#logo').click(function() {
+    $.ajax({
+        url: '/getApps'
+    }).done(function(data) {
+        console.log(data);
+    });
+});
+</script>

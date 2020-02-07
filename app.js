@@ -1,14 +1,20 @@
 var express = require('express'),
     routes = require('./routes'),
     user = require('./routes/user'),
-    application = require('./routes/application'),
+    global = require('./routes/application'),
     app = express(),
     http = require('http'),
     passport = require('passport'),
     passportConfig = require('./config/passport'), // mucho important
     path = require('path'),
     bodyParser = require('body-parser'),
+    rateLimit = require('express-rate-limit'),
     session = require('express-session');
+
+const registerLimit = ({
+    windowMs: 60 * 60 * 1000, // 15 minutes
+    max: 50
+});
 
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -30,10 +36,12 @@ app.use(passport.session());
 // #region Routes
 
 
-app.get('/', routes.index);
-app.get('/login', user.login);
-app.get('/logout', application.destroySession);
+app.get('/', global.isAuthenticated, routes.index);
+app.get('/getApps', global.isAuthenticated, routes.getVisibleApps);
 
+// authentication
+app.get('/login', user.login);
+app.get('/logout', global.destroySession);
 app.post('/authenticate', passport.authenticate('local'), (req, res) => { res.redirect('/'); });
 app.post('/register', user.register);
 

@@ -2,8 +2,7 @@ exports.isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated())
         next();
     else 
-        res.redirect(401, '/login');
-        // next(new Error(401));
+        res.redirect('/login');
 }
 
 exports.destroySession = (req, res, next) => {

@@ -3,7 +3,7 @@ var db = require('../models'),
 
 exports.login = (req, res) => {
     if (req.isAuthenticated())
-        res.redirect('/');
+         res.redirect('/');
     else
         res.render('login.ejs')
 }
