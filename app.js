@@ -36,8 +36,8 @@ app.use(passport.session());
 // #region Routes
 
 
-app.get('/', global.isAuthenticated, routes.index);
-app.get('/getApps', global.isAuthenticated, routes.getVisibleApps);
+app.get('/', global.isAuth, routes.index);
+app.get('/getApps', global.isAuthAjax, routes.getVisibleApps);
 
 // authentication
 app.get('/login', user.login);
