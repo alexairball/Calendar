@@ -33,6 +33,20 @@
         
     <div id="apps-container">
         <div id="apps">
+            {{#each apps}}
+            
+                <!-- for each app category 
+                        create class="app-category"
+                            for each app
+                                create class="app"
+                -->
+            {{/each}}
+
+            <div class="app-category" id="">
+                <div class="app" id="app-calendar">
+                    <i class="far fa-calendar-alt"></i>
+                </div>
+            </div>
             <div class="app" id="app-calendar">
                 <i class="far fa-calendar-alt"></i>
             </div>
