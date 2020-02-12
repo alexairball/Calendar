@@ -9,25 +9,30 @@ var express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
     rateLimit = require('express-rate-limit'),
-    session = require('express-session');
+    session = require('express-session'),
+    hbs = require('handlebars'),
+    exphbs = require('express-handlebars'),
+    {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
-const registerLimit = ({
-    windowMs: 60 * 60 * 1000, // 15 minutes
-    max: 50
-});
 
-app.use(express.static(path.join(__dirname, '/public')));
-
+app.engine('handlebars', exphbs({ 
+    helpers:{
+        section: function(name, options){
+            if(!this._sections) this._sections = {};
+            this._sections[name] = options.fn(this);
+            return null;
+        }
+    },
+    handlebars: allowInsecurePrototypeAccess(hbs) 
+}));
 app.set('views', __dirname + '/views');
+app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
 
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(session({ 
-    secret: 'TO_CHANGE',
-    resave: false,
-    saveUninitialized: true
-}));
+app.use(session({ secret: 'TO_CHANGE', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 

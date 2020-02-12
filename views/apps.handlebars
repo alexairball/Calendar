@@ -1,0 +1,23 @@
+{{#section 'head'}}
+    <link rel="stylesheet" type="text/css" href="/css/apps.css" />
+    <script type="text/javascript" src="/js/apps.js"></script>
+{{/section}}
+
+<div id="logo">
+    <h1>Cotulity</h1>
+</div>
+        
+<div id="apps-container">
+    <div id="apps">
+        {{#each categories}}
+            <div class="app-category" id="{{this.name}}">
+                <h2>{{this.name}}</h2>
+                {{#each this.Apps}}
+                    <div class="app" id="app-{{this.name}}">
+                        <i class="fa {{this.image}}"></i>
+                    </div>
+                {{/each}}
+            </div>
+        {{/each}}
+    </div>
+</div>

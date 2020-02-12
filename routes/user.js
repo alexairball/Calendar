@@ -5,7 +5,7 @@ exports.login = (req, res) => {
     if (req.isAuthenticated())
          res.redirect('/');
     else
-        res.render('login.ejs')
+        res.render('login')
 }
 
 exports.register = (req, res) => {

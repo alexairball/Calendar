@@ -33,43 +33,45 @@
         // x = 1280, y = 3.18, z = 3
         // x = 1024, y = 2.55, z = 2
     
-        > .app {
-            position: relative;
-            float: left;
-            width: @app-size;
-            height: @app-size;
-            background-color: white;
-            margin-right: @margin-size;
-            margin-bottom: @margin-size;
-            cursor: pointer;
-            border-radius: 10px;
-    
-            > i {
-                @bg: #global.bg();
-                
-                background: @bg[gradient-dark];
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-    
-                font-size: 70px;
-                line-height: @app-size;
-                display: inline-block;
-                width: 100%;
-                text-align: center;
-            }
-    
-            &:hover {
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                @bg: #global.bg();
-                background-image: @bg[gradient-dark];
-
+        > .app-category {
+            > .app {
+                position: relative;
+                float: left;
+                width: @app-size;
+                height: @app-size;
+                background-color: white;
+                margin-right: @margin-size;
+                margin-bottom: @margin-size;
+                cursor: pointer;
+                border-radius: 10px;
+        
                 > i {
-                    background: transparent;
-                    color: white;
-                    -webkit-background-clip: border-box;
-                    -webkit-text-fill-color: currentcolor;
+                    @bg: #global.bg();
+                    
+                    background: @bg[gradient-dark];
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+        
+                    font-size: 70px;
+                    line-height: @app-size;
+                    display: inline-block;
+                    width: 100%;
+                    text-align: center;
+                }
+        
+                &:hover {
+                    box-sizing: border-box;
+                    -moz-box-sizing: border-box;
+                    -webkit-box-sizing: border-box;
+                    @bg: #global.bg();
+                    background-image: @bg[gradient-dark];
+    
+                    > i {
+                        background: transparent;
+                        color: white;
+                        -webkit-background-clip: border-box;
+                        -webkit-text-fill-color: currentcolor;
+                    }
                 }
             }
         }

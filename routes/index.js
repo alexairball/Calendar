@@ -2,7 +2,7 @@ var db = require('../models');
 
 exports.index = (req, res) => {
     getVisibleApps().then(apps => {
-        res.render("apps.ejs", apps);
+        res.render("apps", { categories: apps });
     });
 }
 
