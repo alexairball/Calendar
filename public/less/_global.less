@@ -5,6 +5,11 @@
     src: url("../fonts/GoodMorningAfternoon.ttf");
 }
 
+@font-face {
+    font-family: "Crete Round";
+    src: url("../fonts/CreteRound-Regular.ttf");
+}
+
 // #endregion
 
 
@@ -30,7 +35,7 @@
 #fonts() {
     .family() {
         ss: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        s: 'Times new roman', serif;
+        s: 'Crete Round', 'Times new roman', serif;
     }
 }
 
@@ -68,12 +73,24 @@ input:-webkit-autofill {
     -o-user-select: none;
 }
 
-.font-default {
-    @family: #fonts.family();
-    font-family: @family[ss];
+.font-style-default {
     font-size: 14px;
     font-weight: 400;
     font-style: normal;
+}
+
+.font-default {
+    @family: #fonts.family();
+    font-family: @family[ss];
+    
+    .font-style-default();
+}
+
+.font-default-s {
+    @family: #fonts.family();
+    font-family: @family[s];
+    
+    .font-style-default();
 }
 
 .form-input {

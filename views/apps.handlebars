@@ -11,7 +11,7 @@
     <div id="apps">
         {{#each categories}}
             <div class="app-category" id="{{this.name}}">
-                <h2>{{this.name}}</h2>
+                {{!-- <h2>{{this.name}}</h2> --}}
                 {{#each this.Apps}}
                     <div class="app" id="app-{{this.name}}">
                         <i class="fa {{this.image}}"></i>
