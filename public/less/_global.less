@@ -77,6 +77,7 @@ input:-webkit-autofill {
     font-size: 14px;
     font-weight: 400;
     font-style: normal;
+    color: black;
 }
 
 .font-default {
@@ -196,6 +197,27 @@ input:-webkit-autofill {
     }
 }
 
+.btn-round {
+    &-green { background-color: #71df5b; }
+    &-red { background-color: #ff4d4d; }
+    &-grey { 
+        background-color: #ebebeb; 
+        color: #666666 !important;
+    }
+
+    height: 72px;
+    width: 240px;
+    border: 0;
+    border-radius: 76px;
+    cursor: pointer;
+
+    .font-default();
+    font-size: 24px;
+    color: white;
+    text-align: center;
+
+    .noselect();
+}
 
 // #endregion
 
@@ -223,19 +245,53 @@ input:-webkit-autofill {
 
 // #region popup
 
-.popup {
-    background-color: white;
+#popup-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999999;
 
-    > h1 {
-        .font-default-s();
-        font-size: 22px;
-    }
-
-    > div {
-        > button {
+    > #popup {
+        background-color: white;
+        width: 50%;
+        height: auto;
+    
+        > h1 {
+            .font-default-s();
+            font-size: 48px;
+    
+            display: block;
+            width: 100%;
+            padding: 76px 90px;
+            margin: 0;
+            background-color: #f2f2f2;
+            color: black;
+        }
+        
+        > .buttons {
+            padding: 55px 90px;
+            width: 100%;
+            height: 72px;
+            background-color: white;
             
+            > button {
+                float: left;
+        
+                .btn-round();
+
+                &.btn-round-green {
+                    margin-left: 36px;
+                    float: right;
+                }
+                &.btn-round-grey {
+                    float: right;
+                }
+            }
         }
     }
 }
+
 
 // #endregion
